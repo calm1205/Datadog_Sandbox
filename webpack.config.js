@@ -8,6 +8,7 @@ const path = require("path");
  * https://github.com/jantimon/html-webpack-plugin#options
  */
 const HtmlWebpackPulgin = require("html-webpack-plugin");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -16,8 +17,9 @@ module.exports = {
     new HtmlWebpackPulgin({
       title: "React Sandbox",
       favicon: path.resolve(__dirname, "src", "public", "favicon.ico"),
-      template: path.resolve(__dirname, "src", "index.html"),
+      template: path.resolve(__dirname, "src", "public", "index.html"),
     }),
+    new Dotenv(),
   ],
   output: {
     /**
@@ -48,7 +50,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.tsx$/,
+        test: /\.ts|\.tsx$/,
         use: "ts-loader",
         exclude: /node_modules/,
       },
